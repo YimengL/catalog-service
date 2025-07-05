@@ -30,7 +30,13 @@ public class BookService {
     public Book editBookDetails(String isbn, Book book) {
         return bookRepository.findByIsbn(isbn)
                 .map(existingBook -> {
-                    var bookToUpdate = new Book(existingBook.isbn(), book.title(), book.author(), book.price());
+                    var bookToUpdate = new Book(
+                            existingBook.id(),
+                            existingBook.isbn(),
+                            book.title(),
+                            book.author(),
+                            book.price(),
+                            existingBook.version()); // Uses the version of the existing book, which will be increased automatically if the update operation succeeds
                     return bookRepository.save(bookToUpdate);
                 })
                 .orElseGet(() -> addBookToCatalog(book));
