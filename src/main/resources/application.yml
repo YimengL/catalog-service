@@ -7,5 +7,14 @@ server:
       max: 50
       min-spare: 5
 
+spring:
+  application:
+    name: catalog-service # The name of the application, used by the config server to filter the configuration
+  config:
+    import: "optional:configserver:" # Imports configuration data from a config server when available
+  cloud:
+    config:
+      uri: http://localhost:8888 # URL of the config server
+
 polar:
   greeting: Welcome to the local book catalog!
