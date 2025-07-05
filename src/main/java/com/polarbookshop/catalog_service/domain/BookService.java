@@ -36,6 +36,8 @@ public class BookService {
                             book.title(),
                             book.author(),
                             book.price(),
+                            existingBook.createdDate(),
+                            existingBook.lastModifiedDate(),
                             existingBook.version()); // Uses the version of the existing book, which will be increased automatically if the update operation succeeds
                     return bookRepository.save(bookToUpdate);
                 })

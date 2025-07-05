@@ -5,8 +5,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Version;
+
+import java.time.Instant;
 
 // The domain model is implemented as a record, an immutable object.
 public record Book(
@@ -31,11 +35,17 @@ public record Book(
         @Positive(message = "The book price must be greater than zero.")
         Double price,
 
+        @CreatedDate
+        Instant createdDate,
+
+        @LastModifiedDate
+        Instant lastModifiedDate,
+
         @Version
         int version // The entity version number, which is used for optimistic locking
 ) {
         public static Book of(String isbn, String title, String author, Double price) {
                 // An entity is considered new when the ID is null and the version is 0
-                return new Book(null, isbn, title, author, price, 0);
+                return new Book(null, isbn, title, author, price, null, null, 0);
         }
 }
