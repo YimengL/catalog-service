@@ -24,5 +24,11 @@ spring:
         max-interval: 2000 # 2s
         multiplier: 1.1
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh # Exposes the /actuator/refresh endpoint through HTTP
+
 polar:
   greeting: Welcome to the local book catalog!
