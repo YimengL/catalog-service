@@ -25,6 +25,7 @@ repositories {
 
 ext {
 	set('springCloudVersion', "2025.0.0") // Defines the Spring Cloud version to use
+	set('testcontainersVersion', "1.19.8") // Defines the Testcontainers version to use
 }
 
 dependencies {
@@ -39,6 +40,7 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.testcontainers:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webflux'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
@@ -46,6 +48,7 @@ dependencies {
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}" // BOM for Spring Cloud dependency management
+		mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}" // BOM for Testcontainers dependency management
 	}
 }
 
