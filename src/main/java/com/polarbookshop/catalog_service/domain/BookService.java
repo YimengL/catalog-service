@@ -36,6 +36,7 @@ public class BookService {
                             book.title(),
                             book.author(),
                             book.price(),
+                            book.publisher(),
                             existingBook.createdDate(),
                             existingBook.lastModifiedDate(),
                             existingBook.version()); // Uses the version of the existing book, which will be increased automatically if the update operation succeeds
