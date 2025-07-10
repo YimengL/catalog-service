@@ -1,0 +1,28 @@
+apiVersion: apps/v1 # The API version for Deployment objects
+kind: Deployment
+metadata:
+  name: catalog-service
+  labels:
+    app: catalog-service
+spec:
+  selector: # Defines the labels used to select the Pods to be scaled
+    matchLabels:
+      app: catalog-service
+  template: # The template for creating a pod
+    metadata:
+      labels:
+        app: catalog-service # Labels attached to the Pod object. They should match the ones used as selectors.
+    spec:
+      containers: # The list of containers in the Pod (one in this case)
+        - name: catalog-service
+          image: catalog-service
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9001
+          env:
+            - name: BPL_JVM_THREAD_COUNT
+              value: "50" # Buildpacks environment variable to configure the number of threads in memory calculation
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://polar-postgres:5432/polardb_catalog # The URL of the PostgreSQL database
+            - name: SPRING_PROFILES_ACTIVE
+              value: testdata # The active Spring profile
