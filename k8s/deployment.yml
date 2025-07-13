@@ -27,6 +27,8 @@ spec:
           env:
             - name: BPL_JVM_THREAD_COUNT
               value: "50" # Buildpacks environment variable to configure the number of threads in memory calculation
+            - name: SPRING_CLOUD_CONFIG_URI
+              value: http://config-service # The URL of the config server
             - name: SPRING_DATASOURCE_URL
               value: jdbc:postgresql://polar-postgres:5432/polardb_catalog # The URL of the PostgreSQL database
             - name: SPRING_PROFILES_ACTIVE
