@@ -39,7 +39,7 @@ jobs:
           chmod +x gradlew
           ./gradlew build
       - name: Setup tools
-        uses: alexellis/setip-arkade@v3
+        uses: alexellis/setup-arkade@v3
       - name: Install tools
         uses: alexellis/arkade-get@master
         with:
